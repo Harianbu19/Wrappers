@@ -1,0 +1,33 @@
+	public static void waitForLoad(WebDriver driver) {
+
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+
+			public Boolean apply(WebDriver driver) {
+
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+
+			}
+
+		};
+
+		WebDriverWait wait = new WebDriverWait(driver, 90);
+
+		wait.until(pageLoadCondition);
+
+	}
+
+	public static void waitForElementPresent(WebDriver driver, String xpath) {
+
+		WebDriverWait wait = new WebDriverWait(driver, 90);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+
+	}
+
+	public static void waitForElementClickable(WebDriver driver, String xpath) {
+
+		WebDriverWait wait = new WebDriverWait(driver, 90);
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+
+	}
